@@ -1,4 +1,4 @@
-# Email Auto Machine (VEMU)
+# Email Auto Machine
 
 A MERN-stack web app that sends **personalized email campaigns from a spreadsheet**, with accounts, poster images, live sending progress, and full sending history.
 
