@@ -4,7 +4,7 @@
   "installCommand": "npm run install-all",
   "outputDirectory": "client/dist",
   "functions": {
-    "api/index.js": {
+    "api/[...path].js": {
       "includeFiles": "server/uploads/**"
     }
   }
