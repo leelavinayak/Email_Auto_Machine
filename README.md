@@ -44,7 +44,7 @@ Then open **http://localhost:5173**. Create an account on the Login page to star
 
 ## Deploying to Vercel
 
-The repository includes a Vercel serverless entry at `api/index.js` and a root `vercel.json` that builds the Vite client and routes `/api/*` to Express. Import the repository into Vercel from its root folder, then add these Environment Variables for the Production environment:
+The repository includes a Vercel serverless entry at `api/[...path].js` and a root `vercel.json` that builds the Vite client and routes `/api/*` to Express. Import the repository into Vercel from its root folder, then add these Environment Variables for the Production environment:
 
 - `MONGO_URI` — use a hosted MongoDB/Atlas connection string; the in-memory fallback is not persistent on Vercel.
 - `JWT_SECRET` — use a long random production secret.
