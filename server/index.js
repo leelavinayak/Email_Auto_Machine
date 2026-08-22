@@ -41,9 +41,19 @@ app.get('/api/health', (req, res) => {
   res.json({ ok: true, db: global.__DB_MODE__ || 'unknown' });
 });
 
-connectDB().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Email Auto Machine API running on http://localhost:${PORT}`);
-    console.log(`Database mode: ${global.__DB_MODE__ || 'unknown'}`);
+let dbPromise;
+export const initializeDB = () => {
+  if (!dbPromise) dbPromise = connectDB();
+  return dbPromise;
+};
+
+export default app;
+
+if (process.env.VERCEL !== '1') {
+  initializeDB().then(() => {
+    app.listen(PORT, () => {
+      console.log(`Email Auto Machine API running on http://localhost:${PORT}`);
+      console.log(`Database mode: ${global.__DB_MODE__ || 'unknown'}`);
+    });
   });
-});
+}

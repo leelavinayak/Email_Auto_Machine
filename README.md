@@ -42,6 +42,17 @@ Then open **http://localhost:5173**. Create an account on the Login page to star
 - The backend automatically uses MongoDB if one is reachable; otherwise it runs on a built-in memory store (data resets on restart). Set `MONGO_URI` in `server/.env` to point at your MongoDB or Atlas cluster.
 - Set `JWT_SECRET` in `server/.env` to a strong secret for production.
 
+## Deploying to Vercel
+
+The repository includes a Vercel serverless entry at `api/index.js` and a root `vercel.json` that builds the Vite client and routes `/api/*` to Express. Import the repository into Vercel from its root folder, then add these Environment Variables for the Production environment:
+
+- `MONGO_URI` — use a hosted MongoDB/Atlas connection string; the in-memory fallback is not persistent on Vercel.
+- `JWT_SECRET` — use a long random production secret.
+- `APP_URL` — your deployed Vercel URL.
+- `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_SECURE`, `SMTP_FROM_NAME`, `SMTP_FROM_EMAIL` — required for password-reset and real email delivery.
+
+After deployment, verify the backend at `https://<your-domain>/api/health`. It should return `{ "ok": true, "db": "mongo" }` when MongoDB is configured correctly.
+
 ## Sending real emails
 
 1. Open the **Settings** tab (bottom nav).
