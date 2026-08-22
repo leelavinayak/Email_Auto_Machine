@@ -28,7 +28,8 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+const uploadsRoot = process.env.VERCEL === '1' ? path.join('/tmp', 'email-automachine-uploads') : path.join(__dirname, 'uploads');
+app.use('/uploads', express.static(uploadsRoot));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/upload', uploadRoutes);

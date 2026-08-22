@@ -11,8 +11,9 @@ import { requireAuth } from '../middleware.js';
 const router = express.Router();
 router.use(requireAuth);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const listsDir = path.join(__dirname, '..', 'uploads', 'lists');
-const imagesDir = path.join(__dirname, '..', 'uploads', 'images');
+const uploadsRoot = process.env.VERCEL === '1' ? path.join('/tmp', 'email-automachine-uploads') : path.join(__dirname, '..', 'uploads');
+const listsDir = path.join(uploadsRoot, 'lists');
+const imagesDir = path.join(uploadsRoot, 'images');
 
 fs.mkdirSync(listsDir, { recursive: true });
 fs.mkdirSync(imagesDir, { recursive: true });
