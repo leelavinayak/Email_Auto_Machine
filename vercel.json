@@ -2,7 +2,7 @@
   "version": 2,
   "buildCommand": "npm run build",
   "installCommand": "npm run install-all",
-  "outputDirectory": "client/dist",
+  "outputDirectory": "dist",
   "functions": {
     "api/[...path].js": {
       "includeFiles": "server/uploads/**"
